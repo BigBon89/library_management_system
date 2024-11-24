@@ -8,3 +8,20 @@ class Book:
 
     def __str__(self):
         return f"id:{self.id} title:{self.title} author:{self.author} year:{self.year} status:{self.status}"
+
+    def to_dict(self) -> dict:
+        """Преобразует объект книги в словарь"""
+
+        return {
+            "id": self.id,
+            "title": self.title,
+            "author": self.author,
+            "year": self.year,
+            "status": self.status,
+        }
+
+    @staticmethod
+    def from_dict(data: dict):
+        """Создает объект книги из словаря"""
+
+        return Book(data["id"], data["title"], data["author"], data["year"], data["status"])
