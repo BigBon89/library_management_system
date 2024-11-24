@@ -61,3 +61,15 @@ class Library:
                 return
 
         print(f"Книги с id={id} не существует")
+
+    def find_book(self, name: str) -> None:
+        result = []
+        for book in self.books:
+            if book.title == name or book.author == name or (name.isnumeric() and book.year == int(name)):
+                result.append(str(book))
+
+        if result:
+            print("\n".join(result))
+            return
+
+        print("Книга не найдена")
