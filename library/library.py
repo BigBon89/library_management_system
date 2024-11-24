@@ -8,7 +8,7 @@ class Library:
         self.next_id = 1
 
     def __str__(self):
-        return "\n".join(map(str, self.books)) if self.books else "Библиотека пуста."
+        return "\n".join(map(str, self.books)) if self.books else "Библиотека пуста"
 
     def add_book(self, title: str, author: str, year: str) -> None:
         """Добавляет книгу"""

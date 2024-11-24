@@ -50,7 +50,4 @@ def command_handler(command_object: Command, library: Library) -> None:
               f"ожидает {expected_args} аргументов, получено {len(command_object.args)}")
         return
 
-    if command_object.args:
-        command_map[command_object.command](*command_object.args)
-    else:
-        command_map[command_object.command]()
+    command_map[command_object.command](*command_object.args)
