@@ -22,3 +22,19 @@ class Library:
         print(f"Книга '{title}' добавлена с id={self.next_id}")
 
         self.next_id += 1
+
+    def remove_book(self, id: str) -> None:
+        """Удаляет книгу по переданному индексу"""
+
+        if not id.isnumeric():
+            print("Неверно указан id")
+            return
+
+        id = int(id)
+
+        for book in self.books:
+            if book.id == id:
+                self.books.remove(book)
+                return
+        
+        print("Данной книги не существует")
