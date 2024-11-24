@@ -88,7 +88,7 @@ class Library:
         with open(filename, "w", encoding="utf-8") as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
 
-        print(f"Библиотека сохранена в файл '{filename}'.")
+        print(f"Библиотека сохранена в файл '{filename}'")
 
     def load_from_file(self, filename: str) -> None:
         """Загружает библиотеку из файла JSON"""

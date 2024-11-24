@@ -30,7 +30,7 @@ def command_handler(command_object: Command, library: Library) -> None:
 
     if len(command_object.args) != expected_args:
         print(f"Команда '{command_object.command}' "
-              f"ожидает {expected_args} аргументов, получено {len(command_object.args)}.")
+              f"ожидает {expected_args} аргументов, получено {len(command_object.args)}")
         return
 
     if command_object.args:
