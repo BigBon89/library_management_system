@@ -5,3 +5,6 @@ class Book:
         self.author = author
         self.year = year
         self.status = status
+
+    def __str__(self):
+        return f"id:{self.id} title:{self.title} author:{self.author} year:{self.year} status:{self.status}"
