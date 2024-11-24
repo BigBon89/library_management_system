@@ -40,10 +40,9 @@ def command_handler(command_object: Command, library: Library) -> None:
         print("Неизвестная команда. Используйте 'help' для справки")
         return
 
+    expected_args = command_map[command_object.command].__code__.co_argcount
     if ismethod(command_map[command_object.command]):
-        expected_args = command_map[command_object.command].__code__.co_argcount - 1
-    else:
-        expected_args = command_map[command_object.command].__code__.co_argcount
+        expected_args -= 1
 
     if len(command_object.args) != expected_args:
         print(f"Команда '{command_object.command}' "
