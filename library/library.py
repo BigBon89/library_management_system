@@ -65,11 +65,13 @@ class Library:
 
     def find_book(self, name: str) -> None:
         result = []
+        name = name.lower()
         for book in self.books:
-            if book.title == name or book.author == name or (name.isnumeric() and book.year == int(name)):
+            if book.title.lower() == name or book.author.lower() == name or (name.isnumeric() and book.year == int(name)):
                 result.append(str(book))
 
         if result:
+            print("Найденные книги:")
             print("\n".join(result))
             return
 
