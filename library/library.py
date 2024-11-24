@@ -36,5 +36,28 @@ class Library:
             if book.id == id:
                 self.books.remove(book)
                 return
-        
+
         print("Данной книги не существует")
+
+    def change_status(self, id: str, new_status: str) -> None:
+        """Меняет статус книги по переданному индексу"""
+
+        if not id.isnumeric():
+            print("Неверно указан id")
+            return
+
+        id = int(id)
+
+        new_status = new_status.lower()
+
+        if new_status not in {"в наличии", "выдана"}:
+            print("Неверно указан статус, используйте 'в наличии', 'выдана'")
+            return
+
+        for book in self.books:
+            if book.id == id:
+                book.status = new_status
+                print(f"Статус книги с id={id} изменен на '{new_status}'")
+                return
+
+        print(f"Книги с id={id} не существует")
