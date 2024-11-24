@@ -1,4 +1,5 @@
 from library.book import Book
+import json
 
 
 class Library:
@@ -73,3 +74,31 @@ class Library:
             return
 
         print("Книга не найдена")
+
+    def save_to_file(self, filename: str) -> None:
+        """Сохраняет библиотеку в файл JSON"""
+
+        data = {
+            "next_id": self.next_id,
+            "books": [book.to_dict() for book in self.books],
+        }
+
+        with open(filename, "w", encoding="utf-8") as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
+
+        print(f"Библиотека сохранена в файл '{filename}'.")
+
+    def load_from_file(self, filename: str) -> None:
+        """Загружает библиотеку из файла JSON"""
+
+        try:
+            with open(filename, "r", encoding="utf-8") as file:
+                data = json.load(file)
+                self.next_id = data["next_id"]
+                self.books = [Book.from_dict(book) for book in data["books"]]
+
+            print(f"Библиотека загружена из файла '{filename}'")
+        except FileNotFoundError:
+            print(f"Файл '{filename}' не найден")
+        except json.JSONDecodeError:
+            print(f"Ошибка чтения файла '{filename}'")
