@@ -7,6 +7,12 @@ class Book:
         self.status = status
 
 
+class Library:
+    def __init__(self):
+        self.books = []
+        self.next_id = 1
+
+
 def main():
     pass
 
