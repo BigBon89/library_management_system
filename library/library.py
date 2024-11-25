@@ -3,6 +3,8 @@ import json
 
 
 class Library:
+    """Класс для управления библиотекой"""
+
     def __init__(self):
         self.books = []
         self.next_id = 1
@@ -64,6 +66,8 @@ class Library:
         print(f"Книги с id={id} не существует")
 
     def find_book(self, name: str) -> None:
+        """Ищет книгу по <Имя книги/Автор/Год>, выводит все совпадения"""
+
         result = []
         name = name.lower()
         for book in self.books:
