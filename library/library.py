@@ -71,7 +71,9 @@ class Library:
         result = []
         name = name.lower()
         for book in self.books:
-            if book.title.lower() == name or book.author.lower() == name or (name.isnumeric() and book.year == int(name)):
+            if (book.title.lower() == name or
+                    book.author.lower() == name or
+                    (name.isnumeric() and book.year == int(name))):
                 result.append(str(book))
 
         if result:
