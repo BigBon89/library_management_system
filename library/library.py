@@ -38,6 +38,7 @@ class Library:
         for book in self.books:
             if book.id == id:
                 self.books.remove(book)
+                print(f"Книга '{book.title}' с id={book.id} удалена")
                 return
 
         print("Данной книги не существует")
