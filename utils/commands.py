@@ -33,7 +33,7 @@ def command_handler(command_object: Command, library: Library) -> None:
         "remove_book": library.remove_book,
         "find_book": library.find_book,
         "change_status": library.change_status,
-        "print_books": lambda: print(library),
+        "print_books": library.__str__,
         "help": print_help,
         "save": library.save_to_file,
         "load": library.load_from_file,
