@@ -12,61 +12,55 @@ class Library:
     def __str__(self):
         return "\n".join(map(str, self.books)) if self.books else "Библиотека пуста"
 
-    def add_book(self, title: str, author: str, year: str) -> None:
+    def add_book(self, title: str, author: str, year: str) -> str:
         """Добавляет книгу"""
 
         if not year.isnumeric():
-            print("Некорректный год издания")
-            return
+            return "Некорректный год издания"
 
         book = Book(self.next_id, title, author, int(year), "в наличии")
         self.books.append(book)
 
-        print(f"Книга '{title}' добавлена с id={self.next_id}")
-
         self.next_id += 1
 
-    def remove_book(self, id: str) -> None:
+        return f"Книга '{title}' добавлена с id={self.next_id - 1}"
+
+    def remove_book(self, id: str) -> str:
         """Удаляет книгу по переданному индексу"""
 
         if not id.isnumeric():
-            print("Неверно указан id")
-            return
+            return "Неверно указан id"
 
         id = int(id)
 
         for book in self.books:
             if book.id == id:
                 self.books.remove(book)
-                print(f"Книга '{book.title}' с id={book.id} удалена")
-                return
+                return f"Книга '{book.title}' с id={book.id} удалена"
 
-        print("Данной книги не существует")
+        return "Данной книги не существует"
 
-    def change_status(self, id: str, new_status: str) -> None:
+    def change_status(self, id: str, new_status: str) -> str:
         """Меняет статус книги по переданному индексу"""
 
         if not id.isnumeric():
-            print("Неверно указан id")
-            return
+            return "Неверно указан id"
 
         id = int(id)
 
         new_status = new_status.lower()
 
         if new_status not in {"в наличии", "выдана"}:
-            print("Неверно указан статус, используйте 'в наличии', 'выдана'")
-            return
+            return "Неверно указан статус, используйте 'в наличии', 'выдана'"
 
         for book in self.books:
             if book.id == id:
                 book.status = new_status
-                print(f"Статус книги с id={id} изменен на '{new_status}'")
-                return
+                return f"Статус книги с id={id} изменен на '{new_status}'"
 
-        print(f"Книги с id={id} не существует")
+        return f"Книги с id={id} не существует"
 
-    def find_book(self, name: str) -> None:
+    def find_book(self, name: str) -> str:
         """Ищет книгу по <Имя книги/Автор/Год>, выводит все совпадения"""
 
         result = []
@@ -78,13 +72,11 @@ class Library:
                 result.append(str(book))
 
         if result:
-            print("Найденные книги:")
-            print("\n".join(result))
-            return
+            return "Найденные книги:\n" + "\n".join(result)
 
-        print("Книга не найдена")
+        return "Книга не найдена"
 
-    def save_to_file(self, filename: str) -> None:
+    def save_to_file(self, filename: str) -> str:
         """Сохраняет библиотеку в файл JSON"""
 
         data = {
@@ -95,9 +87,9 @@ class Library:
         with open(filename, "w", encoding="utf-8") as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
 
-        print(f"Библиотека сохранена в файл '{filename}'")
+        return f"Библиотека сохранена в файл '{filename}'"
 
-    def load_from_file(self, filename: str) -> None:
+    def load_from_file(self, filename: str) -> str:
         """Загружает библиотеку из файла JSON"""
 
         try:
@@ -106,10 +98,10 @@ class Library:
                 self.next_id = data["next_id"]
                 self.books = [Book.from_dict(book) for book in data["books"]]
 
-            print(f"Библиотека загружена из файла '{filename}'")
+            return f"Библиотека загружена из файла '{filename}'"
         except FileNotFoundError:
-            print(f"Файл '{filename}' не найден")
+            return f"Файл '{filename}' не найден"
         except json.JSONDecodeError:
-            print(f"Ошибка чтения файла '{filename}'")
+            return f"Ошибка чтения файла '{filename}'"
         except KeyError as e:
-            print(f"Ошибка в структуре данных: отсутствует ключ {e}")
+            return f"Ошибка в структуре данных: отсутствует ключ {e}"
