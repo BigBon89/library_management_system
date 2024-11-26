@@ -111,3 +111,5 @@ class Library:
             print(f"Файл '{filename}' не найден")
         except json.JSONDecodeError:
             print(f"Ошибка чтения файла '{filename}'")
+        except KeyError as e:
+            print(f"Ошибка в структуре данных: отсутствует ключ {e}")
