@@ -21,7 +21,7 @@ class Book:
         }
 
     @staticmethod
-    def from_dict(data: dict):
+    def from_dict(data: dict) -> "Book":
         """Создает объект книги из словаря"""
 
         return Book(data["id"], data["title"], data["author"], data["year"], data["status"])
