@@ -6,11 +6,7 @@ def main():
     library = Library()
     print("Введите 'help' для получения списка команд")
     while True:
-        input_line = input().strip()
-
-        if not input_line:
-            print("Введите команду")
-            continue
+        input_line = input()
 
         command_object = Command(input_line)
 

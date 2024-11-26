@@ -10,7 +10,10 @@ class Command:
         pattern = r'([\'\"].+?[\'\"])|(\S+)'
         matches = re.findall(pattern, command)
 
-        self._command = matches[0][1]
+        self._command = ""
+
+        if matches:
+            self._command = matches[0][1]
         self._args = [match[0].strip('\"\'') or match[1] for match in matches[1:]]
 
     @property
@@ -49,4 +52,4 @@ def command_handler(command_object: Command, library: Library) -> None:
               f"ожидает {expected_args} аргументов, получено {len(command_object.args)}")
         return
 
-    command_map[command_object.command](*command_object.args)
+    print(command_map[command_object.command](*command_object.args))
