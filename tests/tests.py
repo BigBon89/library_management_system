@@ -14,6 +14,7 @@ class Tests(unittest.TestCase):
         self.assertEqual(self.library.books[0].title, "Книга 1")
         self.assertEqual(self.library.books[0].author, "Автор 1")
         self.assertEqual(self.library.books[0].year, 2019)
+        self.assertEqual(self.library.books[0].status, "в наличии")
 
     def test_add_book_invalid_year(self):
         self.library.add_book("Книга 1", "Автор 1", "год")
